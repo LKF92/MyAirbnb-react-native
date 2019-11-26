@@ -3,6 +3,7 @@ import { AsyncStorage } from "react-native";
 import { NavigationNativeContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
 import { Ionicons } from "@expo/vector-icons";
 import HomeScreen from "./containers/HomeScreen";
 import ProfileScreen from "./containers/ProfileScreen";
@@ -22,7 +23,6 @@ export default function App() {
     } else {
       AsyncStorage.removeItem("userToken");
     }
-
     setUserToken(token);
   };
 
