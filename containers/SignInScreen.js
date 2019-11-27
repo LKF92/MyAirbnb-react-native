@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Text,
@@ -11,8 +11,26 @@ import {
 import Constants from "expo-constants";
 import colors from "../colors";
 import { Ionicons } from "@expo/vector-icons";
+import axios from "axios";
 
 export default function SignInScreen({ setToken }) {
+  const [email, setEmail] = useState("arno@airbnb-api.com");
+  const [password, setPassword] = useState("password01");
+  const logIn = async () => {
+    try {
+      const response = await axios.post(
+        "https://airbnb-api.now.sh/api/user/log_in",
+        {
+          email: email,
+          password: password
+        }
+      );
+      setToken(response.data.token);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.center}>
@@ -40,6 +58,8 @@ export default function SignInScreen({ setToken }) {
             placeholderTextColor="white"
             style={styles.textInput}
             selectionColor="white"
+            value={email}
+            onChangeText={text => setEmail(text)}
           />
         </View>
         <View style={styles.hr}>
@@ -49,16 +69,15 @@ export default function SignInScreen({ setToken }) {
             style={styles.textInput}
             secureTextEntry={true}
             selectionColor="white"
+            value={password}
+            onChangeText={text => setPassword(text)}
           />
         </View>
 
         <TouchableOpacity
           style={styles.btn}
           mode="contained"
-          onPress={async () => {
-            const userToken = "secret-token";
-            setToken(userToken);
-          }}
+          onPress={() => logIn()}
         >
           <Text style={styles.btnText}>Sign in</Text>
         </TouchableOpacity>

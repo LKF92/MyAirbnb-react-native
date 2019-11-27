@@ -3,7 +3,7 @@ import { AsyncStorage } from "react-native";
 import { NavigationNativeContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
+import colors from "./colors";
 import { Ionicons } from "@expo/vector-icons";
 import HomeScreen from "./containers/HomeScreen";
 import ProfileScreen from "./containers/ProfileScreen";
@@ -81,7 +81,14 @@ export default function App() {
                 <Tab.Screen>
                   {() => (
                     <Stack.Navigator>
-                      <Stack.Screen name="Home" options={{ title: "My App" }}>
+                      <Stack.Screen
+                        name="Home"
+                        options={{
+                          title: "My App",
+                          headerStyle: { backgroundColor: colors.red },
+                          headerTitleStyle: { color: "white" }
+                        }}
+                      >
                         {() => <HomeScreen />}
                       </Stack.Screen>
 
