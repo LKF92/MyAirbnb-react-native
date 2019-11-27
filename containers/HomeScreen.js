@@ -1,39 +1,70 @@
 import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/core";
-import { Button, Text, View, StyleSheet, FlatList } from "react-native";
+import {
+  Button,
+  Text,
+  View,
+  StyleSheet,
+  FlatList,
+  ActivityIndicator
+} from "react-native";
 import axios from "axios";
 import colors from "../colors";
-import RoomCard from "../components/RoomCard";
+import RoomPicture from "../components/RoomPicture";
+import RoomInfo from "../components/RoomInfo";
+import RoomScreen from "../containers/RoomScreen";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function HomeScreen() {
+  const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
+  const navigation = useNavigation();
   const fetchData = async () => {
     try {
       const response = await axios.get(
         "https://airbnb-api.now.sh/api/room?city=paris"
       );
-      console.log(response.data.rooms);
       setData(response.data);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
   };
+
   useEffect(() => {
     fetchData();
   }, []);
   return (
-    <View style={styles.container}>
-      <FlatList
-        keyExtractor={item => String(item._id)}
-        data={data.rooms}
-        renderItem={({ item }) => {
-          return <RoomCard room={item} />;
-        }}
-      />
-    </View>
+    <>
+      {isLoading ? (
+        <View>
+          <ActivityIndicator />
+        </View>
+      ) : (
+        <View style={styles.container}>
+          <FlatList
+            keyExtractor={item => String(item._id)}
+            data={data.rooms}
+            renderItem={({ item }) => {
+              return (
+                <View style={styles.card}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      navigation.navigate("Room", { id: item._id });
+                    }}
+                  >
+                    <RoomPicture room={item} height={200} />
+                  </TouchableOpacity>
+                  <RoomInfo room={item} />
+                </View>
+              );
+            }}
+          />
+        </View>
+      )}
+    </>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
@@ -41,22 +72,18 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20
   },
-  marginVertical: {
-    marginVertical: 30
-  },
-
-  center: {
-    alignItems: "center"
+  card: {
+    flex: 1,
+    borderBottomColor: colors.lightGrey,
+    borderBottomWidth: 1,
+    marginBottom: 25
   }
 });
-
-{
-  /* 
-  const navigation = useNavigation();
+/* 
+  
    <Button
         title="Go to Profile"
         onPress={() => {
           navigation.navigate("Profile", { userId: 123 });
         }}
       /> */
-}
