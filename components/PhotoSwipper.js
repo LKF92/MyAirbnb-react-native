@@ -33,8 +33,6 @@ const styles = {
 export default class PhotoSwipper extends Component {
   render() {
     const photos = this.props.room.photos;
-    console.log(photos);
-
     const photosList = photos.map((photo, index) => {
       return (
         <View key={index} style={styles.slide}>

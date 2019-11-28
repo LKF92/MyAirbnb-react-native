@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import { useRoute } from "@react-navigation/core";
 import axios from "axios";
-import RoomPicture from "../components/RoomPicture";
 import RoomInfo from "../components/RoomInfo";
 import Map from "../components/Map";
 import PhotoSwipper from "../components/PhotoSwipper";

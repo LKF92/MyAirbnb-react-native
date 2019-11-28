@@ -6,13 +6,13 @@ import {
   View,
   StyleSheet,
   FlatList,
-  ActivityIndicator
+  ActivityIndicator,
+  TouchableOpacity
 } from "react-native";
 import axios from "axios";
 import colors from "../colors";
 import RoomPicture from "../components/RoomPicture";
 import RoomInfo from "../components/RoomInfo";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function HomeScreen() {
   const [isLoading, setIsLoading] = useState(true);
@@ -81,11 +81,3 @@ const styles = StyleSheet.create({
     width: "100%"
   }
 });
-/* 
-  
-   <Button
-        title="Go to Profile"
-        onPress={() => {
-          navigation.navigate("Profile", { userId: 123 });
-        }}
-      /> */

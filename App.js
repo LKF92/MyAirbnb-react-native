@@ -5,7 +5,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import colors from "./colors";
 import { Ionicons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 import HomeScreen from "./containers/HomeScreen";
+import MapScreen from "./containers/MapScreen";
 import RoomScreen from "./containers/RoomScreen";
 import SignInScreen from "./containers/SignInScreen";
 import SettingsScreen from "./containers/SettingsScreen";
@@ -57,14 +59,18 @@ export default function App() {
           <Stack.Screen name="Tab" options={{ header: () => null }}>
             {() => (
               <Tab.Navigator
+                // This allows us to configure all Tab.Screen under this Tab.Navigator
+                // We could have also chose the `tabBarIcon` in each Tab.Screen
                 screenOptions={({ route }) => {
                   return {
                     tabBarIcon: ({ focused, color, size }) => {
                       let iconName;
                       if (route.name === "Settings") {
                         iconName = `ios-options`;
-                      } else {
+                      } else if (route.name === "Home") {
                         iconName = `ios-home`;
+                      } else if (route.name === "Map") {
+                        iconName = "md-map";
                       }
                       return (
                         <Ionicons name={iconName} size={size} color={color} />
@@ -101,6 +107,30 @@ export default function App() {
                     </Stack.Navigator>
                   )}
                 </Tab.Screen>
+
+                {/* <Tab.Screen>
+                  {() => (
+                    <Stack.Navigator>
+                      <Stack.Screen
+                        name="Map"
+                        options={{
+                          title: "Map Result",
+                          headerStyle: { backgroundColor: colors.red },
+                          headerTitleStyle: { color: "white" }
+                        }}
+                      >
+                        {() => <MapScreen />}
+                      </Stack.Screen>
+
+                      <Stack.Screen
+                        name="Room"
+                        options={{ title: "Room detail" }}
+                      >
+                        {() => <RoomScreen />}
+                      </Stack.Screen>
+                    </Stack.Navigator>
+                  )}
+                </Tab.Screen> */}
                 <Tab.Screen name="Settings">
                   {() => (
                     <Stack.Navigator>
