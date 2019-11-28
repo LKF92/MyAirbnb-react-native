@@ -16,7 +16,8 @@ export default function RoomPicture({ room, height }) {
 
 const styles = StyleSheet.create({
   imgContainer: {
-    position: "relative"
+    position: "relative",
+    flex: 1
   },
   roomPicture: {
     width: "100%"

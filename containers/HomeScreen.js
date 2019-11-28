@@ -12,7 +12,6 @@ import axios from "axios";
 import colors from "../colors";
 import RoomPicture from "../components/RoomPicture";
 import RoomInfo from "../components/RoomInfo";
-import RoomScreen from "../containers/RoomScreen";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function HomeScreen() {
@@ -41,8 +40,9 @@ export default function HomeScreen() {
           <ActivityIndicator />
         </View>
       ) : (
-        <View style={styles.container}>
+        <View>
           <FlatList
+            style={styles.container}
             keyExtractor={item => String(item._id)}
             data={data.rooms}
             renderItem={({ item }) => {
@@ -53,7 +53,9 @@ export default function HomeScreen() {
                       navigation.navigate("Room", { id: item._id });
                     }}
                   >
-                    <RoomPicture room={item} height={200} />
+                    <View style={styles.roomPicture}>
+                      <RoomPicture room={item} height={200} />
+                    </View>
                   </TouchableOpacity>
                   <RoomInfo room={item} />
                 </View>
@@ -68,15 +70,15 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
-    alignItems: "center",
-    flex: 1,
     padding: 20
   },
   card: {
-    flex: 1,
     borderBottomColor: colors.lightGrey,
     borderBottomWidth: 1,
     marginBottom: 25
+  },
+  roomPicture: {
+    width: "100%"
   }
 });
 /* 

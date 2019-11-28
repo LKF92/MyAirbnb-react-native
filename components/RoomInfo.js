@@ -23,7 +23,7 @@ export default function RoomInfo({ room }) {
   };
   return (
     <View style={styles.details}>
-      <View>
+      <View style={{ flex: 1 }}>
         <Text numberOfLines={1} style={styles.roomTitle}>
           {room.title}
         </Text>
@@ -45,7 +45,8 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: "black",
     fontWeight: "300",
-    marginBottom: 7
+    marginBottom: 7,
+    letterSpacing: 1
   },
   row: {
     flexDirection: "row",
@@ -54,7 +55,6 @@ const styles = StyleSheet.create({
   details: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
     marginVertical: 10
   },
   secondaryText: {

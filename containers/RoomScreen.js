@@ -11,10 +11,12 @@ import axios from "axios";
 import RoomPicture from "../components/RoomPicture";
 import RoomInfo from "../components/RoomInfo";
 import Map from "../components/Map";
+import PhotoSwipper from "../components/PhotoSwipper";
 
 export default function RoomScreen() {
   const { params } = useRoute();
   const [isLoading, setIsLoading] = useState(true);
+  const [isTextDisplayed, setIsTextDisplayed] = useState(false);
   const [data, setData] = useState("initialState");
   const fetchData = async () => {
     try {
@@ -22,7 +24,6 @@ export default function RoomScreen() {
         "https://airbnb-api.now.sh/api/room/" + params.id
       );
       setData(response.data);
-      //   console.log(response.data);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -33,30 +34,29 @@ export default function RoomScreen() {
   }, []);
 
   return (
-    <>
+    <ScrollView style={styles.container}>
       {isLoading ? (
-        <ScrollView>
-          <ActivityIndicator />
-        </ScrollView>
+        <ActivityIndicator />
       ) : (
-        <View style={styles.container}>
-          <ScrollView>
-            <View>
-              <View style={styles.roomPicture}>
-                <RoomPicture room={data} height="100%" />
-              </View>
-              <View style={styles.roomInfo}>
-                <RoomInfo room={data} />
-                <Text numberOfLines={3} style={styles.description}>
-                  {data.description}
-                </Text>
-              </View>
-              <Map data={data} />
-            </View>
-          </ScrollView>
+        <View>
+          <View style={styles.roomPicture}>
+            <PhotoSwipper room={data} />
+            {/* <RoomPicture room={data} height="100%" /> */}
+          </View>
+          <View style={styles.roomInfo}>
+            <RoomInfo room={data} />
+            <Text
+              numberOfLines={isTextDisplayed ? 0 : 3}
+              style={styles.description}
+              onPress={() => setIsTextDisplayed(!isTextDisplayed)}
+            >
+              {data.description}
+            </Text>
+          </View>
+          <Map data={data} />
         </View>
       )}
-    </>
+    </ScrollView>
   );
 }
 
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   roomPicture: {
-    height: "50%"
+    height: 300
   },
   roomInfo: {
     paddingHorizontal: 20
