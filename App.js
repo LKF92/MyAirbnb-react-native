@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { AsyncStorage } from "react-native";
 import { NavigationNativeContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import colors from "./colors";
 import { Ionicons } from "@expo/vector-icons";
-import { Feather } from "@expo/vector-icons";
 import HomeScreen from "./containers/HomeScreen";
 import MapScreen from "./containers/MapScreen";
 import RoomScreen from "./containers/RoomScreen";
 import SignInScreen from "./containers/SignInScreen";
-import SettingsScreen from "./containers/SettingsScreen";
+import ProfileScreen from "./containers/ProfileScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -31,7 +30,7 @@ export default function App() {
   React.useEffect(() => {
     // Fetch the token from storage then navigate to our appropriate place
     const bootstrapAsync = async () => {
-      // We should also handle error for production apps
+      // AsyncStorage allows us to create 'cookies' on react native
       const userToken = await AsyncStorage.getItem("userToken");
 
       // This will switch to the App screen or Auth screen and this loading
@@ -39,7 +38,6 @@ export default function App() {
       setIsLoading(false);
       setUserToken(userToken);
     };
-
     bootstrapAsync();
   }, []);
 
@@ -65,18 +63,18 @@ export default function App() {
                   return {
                     tabBarIcon: ({ focused, color, size }) => {
                       let iconName;
-                      if (route.name === "Settings") {
+                      if (route.name === "Profile") {
                         iconName = `ios-options`;
                       } else if (route.name === "Home") {
                         iconName = `ios-home`;
                       } else if (route.name === "Map") {
                         iconName = "md-map";
+                      } else {
                       }
                       return (
                         <Ionicons name={iconName} size={size} color={color} />
                       );
-                    },
-                    title: route.name === "undefined" ? "Home" : route.name // known issue : route.name shouldn't be undefined
+                    }
                   };
                 }}
                 tabBarOptions={{
@@ -84,7 +82,8 @@ export default function App() {
                   inactiveTintColor: "gray"
                 }}
               >
-                <Tab.Screen>
+                {/******* TAB HOME ********/}
+                <Tab.Screen name="Home">
                   {() => (
                     <Stack.Navigator>
                       <Stack.Screen
@@ -107,8 +106,8 @@ export default function App() {
                     </Stack.Navigator>
                   )}
                 </Tab.Screen>
-
-                {/* <Tab.Screen>
+                {/******* TAB MAP ********/}
+                <Tab.Screen name="Map">
                   {() => (
                     <Stack.Navigator>
                       <Stack.Screen
@@ -130,15 +129,17 @@ export default function App() {
                       </Stack.Screen>
                     </Stack.Navigator>
                   )}
-                </Tab.Screen> */}
-                <Tab.Screen name="Settings">
+                </Tab.Screen>
+
+                {/******* TAB PROFILE ********/}
+                <Tab.Screen name="Profile">
                   {() => (
                     <Stack.Navigator>
                       <Stack.Screen
-                        name="Settings"
-                        options={{ title: "Settings" }}
+                        name="Profile"
+                        options={{ title: "Profile" }}
                       >
-                        {() => <SettingsScreen setToken={setToken} />}
+                        {() => <ProfileScreen setToken={setToken} />}
                       </Stack.Screen>
                     </Stack.Navigator>
                   )}

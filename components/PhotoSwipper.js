@@ -49,9 +49,6 @@ export default class PhotoSwipper extends Component {
         <Swiper
           style={styles.wrapper}
           height={240}
-          onMomentumScrollEnd={(e, state, context) =>
-            console.log("index:", state.index)
-          }
           dot={
             <View
               style={{

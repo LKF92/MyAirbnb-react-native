@@ -6,7 +6,8 @@ import {
   View,
   Platform,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  AsyncStorage
 } from "react-native";
 import Constants from "expo-constants";
 import colors from "../colors";
@@ -19,12 +20,14 @@ export default function SignInScreen({ setToken }) {
   const logIn = async () => {
     try {
       const response = await axios.post(
-        "https://airbnb-api.now.sh/api/user/log_in",
+        "https://airbnb-api.herokuapp.com/api/user/log_in",
         {
           email: email,
           password: password
         }
       );
+      // We save the userId in an AsyncStorage
+      await AsyncStorage.setItem("userId", response.data._id);
       setToken(response.data.token);
     } catch (error) {
       console.log(error);
