@@ -15,8 +15,8 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 export default function App() {
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [userToken, setUserToken] = React.useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [userToken, setUserToken] = useState(null);
 
   const setToken = async token => {
     if (token) {
@@ -27,7 +27,7 @@ export default function App() {
     setUserToken(token);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     // Fetch the token from storage then navigate to our appropriate place
     const bootstrapAsync = async () => {
       // AsyncStorage allows us to create 'cookies' on react native
@@ -71,9 +71,7 @@ export default function App() {
                         iconName = "md-map";
                       } else {
                       }
-                      return (
-                        <Ionicons name={iconName} size={size} color={color} />
-                      );
+                      return <Ionicons name={iconName} size={size} color={color} />;
                     }
                   };
                 }}
@@ -97,10 +95,7 @@ export default function App() {
                         {() => <HomeScreen />}
                       </Stack.Screen>
 
-                      <Stack.Screen
-                        name="Room"
-                        options={{ title: "Room detail" }}
-                      >
+                      <Stack.Screen name="Room" options={{ title: "Room detail" }}>
                         {() => <RoomScreen />}
                       </Stack.Screen>
                     </Stack.Navigator>
@@ -121,10 +116,7 @@ export default function App() {
                         {() => <MapScreen />}
                       </Stack.Screen>
 
-                      <Stack.Screen
-                        name="Room"
-                        options={{ title: "Room detail" }}
-                      >
+                      <Stack.Screen name="Room" options={{ title: "Room detail" }}>
                         {() => <RoomScreen />}
                       </Stack.Screen>
                     </Stack.Navigator>
@@ -135,10 +127,7 @@ export default function App() {
                 <Tab.Screen name="Profile">
                   {() => (
                     <Stack.Navigator>
-                      <Stack.Screen
-                        name="Profile"
-                        options={{ title: "Profile" }}
-                      >
+                      <Stack.Screen name="Profile" options={{ title: "Profile" }}>
                         {() => <ProfileScreen setToken={setToken} />}
                       </Stack.Screen>
                     </Stack.Navigator>

@@ -10,9 +10,9 @@
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.5",
     "@react-navigation/bottom-tabs": "^5.0.0-alpha.22",
-    "@react-navigation/core": "^5.0.0-alpha.24",
+    "@react-navigation/core": "^5.0.0-alpha.25",
     "@react-navigation/native": "^5.0.0-alpha.16",
-    "@react-navigation/stack": "^5.0.0-alpha.37",
+    "@react-navigation/stack": "^5.0.0-alpha.38",
     "axios": "^0.19.0",
     "expo": "^35.0.0",
     "expo-image-picker": "~7.0.0",

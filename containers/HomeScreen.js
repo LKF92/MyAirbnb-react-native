@@ -18,11 +18,10 @@ export default function HomeScreen() {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
   const navigation = useNavigation();
+
   const fetchData = async () => {
     try {
-      const response = await axios.get(
-        "https://airbnb-api.now.sh/api/room?city=paris"
-      );
+      const response = await axios.get("https://airbnb-api.now.sh/api/room?city=paris");
       setData(response.data);
       setIsLoading(false);
     } catch (error) {

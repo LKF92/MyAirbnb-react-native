@@ -920,10 +920,10 @@
   dependencies:
     "@react-navigation/routers" "^5.0.0-alpha.15"
 
-"@react-navigation/core@^5.0.0-alpha.24":
-  version "5.0.0-alpha.24"
-  resolved "https://registry.yarnpkg.com/@react-navigation/core/-/core-5.0.0-alpha.24.tgz#e56ecbcf4f78ae9261bb1facdb40576219e4542a"
-  integrity sha512-Nalwv41OM9cui7+xQNWrSJjGInWValC7guGNh58VqKqq8CUPvbEqAtWLqXDZj9VksbUu5Tq9I/mK+BpUMkUFrw==
+"@react-navigation/core@^5.0.0-alpha.25":
+  version "5.0.0-alpha.25"
+  resolved "https://registry.yarnpkg.com/@react-navigation/core/-/core-5.0.0-alpha.25.tgz#35362e013916db4a932afc60bea5d67336482bd3"
+  integrity sha512-+IwWaQVLvneq9Sgd4QBeGhwDeBCDIakm/s4A7P6U9d/CafKYpVOC8Wt55lo5MJiNT3DqVq5GcY83T5Dx7Dv2EQ==
   dependencies:
     escape-string-regexp "^2.0.0"
     query-string "^6.9.0"
@@ -942,10 +942,10 @@
   dependencies:
     shortid "^2.2.15"
 
-"@react-navigation/stack@^5.0.0-alpha.37":
-  version "5.0.0-alpha.37"
-  resolved "https://registry.yarnpkg.com/@react-navigation/stack/-/stack-5.0.0-alpha.37.tgz#5736ec6275e5b862960a93537530c51d11625e7d"
-  integrity sha512-Litxebu+ZLMYIEgCdseIEqvGeIsurduCroNOzYtbZiMSSYbFp7Jyu2SvS9UF1Rhi2zs0LgYdZBgis+/AGn6zqQ==
+"@react-navigation/stack@^5.0.0-alpha.38":
+  version "5.0.0-alpha.38"
+  resolved "https://registry.yarnpkg.com/@react-navigation/stack/-/stack-5.0.0-alpha.38.tgz#6689e28617832a23a4b85b06423a31b6267f1b86"
+  integrity sha512-5Y92sBALnMwjL64ySEyxSr+jL3BCCIC3pfIW72UNX7iJVPDSE4GmP8ZWE5NgfphHVVWuMy8n+9sXDwTplDM1yg==
   dependencies:
     "@react-navigation/routers" "^5.0.0-alpha.15"
 
